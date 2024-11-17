@@ -1,0 +1,62 @@
+# Use a base image (e.g., Ubuntu)
+FROM ubuntu:20.04
+
+# Set non-interactive mode for apt-get
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install basic utilities and SSH
+RUN apt-get update && apt-get install -y \
+    rsync \
+    curl \
+    vim \
+    git \
+    htop \
+    net-tools \
+    tar \
+    openssl \
+    man-db \
+    build-essential \
+    software-properties-common \
+    wget \
+    unzip \
+    lsb-release \
+    ca-certificates \
+    gcc \
+    sudo \
+    openssh-server \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create necessary SSH host keys
+RUN mkdir -p /etc/ssh && ssh-keygen -A
+
+# Create users and set passwords
+RUN useradd -ms /bin/bash atlas && echo "atlas:titan" | chpasswd && \
+    useradd -ms /bin/bash eris && echo "eris:discordia" | chpasswd && \
+    useradd -ms /bin/bash Admin && echo "Admin:Admin" | chpasswd && \
+    usermod -aG sudo Admin
+
+# Set working directories and flags
+WORKDIR /home/atlas
+RUN echo "HD{history_dastur_emas_u_shelldagi_qulaylik}" > flag.txt
+RUN echo "export flag=HD{qanday-GLOBAL-sensatsiya!}" >> /home/atlas/.bashrc
+
+WORKDIR /home/eris
+COPY ./checkpath.c ./checkls.c ./
+RUN gcc checkpath.c -o checkpath && rm -f checkpath.c && \
+    gcc checkls.c -o checkls && rm -f checkls.c
+RUN echo 'alias ls="echo \"ls buyrug‘i ishlamaydi!\""' >> /home/eris/.bashrc
+
+# Set permissions for user directories
+RUN chown -R atlas:atlas /home/atlas && chmod 700 /home/atlas && \
+    chown -R eris:eris /home/eris && chmod 700 /home/eris
+
+# Switch to Admin user for final setup
+USER Admin
+WORKDIR /home/Admin
+
+# Expose the SSH port
+EXPOSE 22
+
+# Start the SSH service and keep the container running
+CMD ["/usr/sbin/sshd", "-D"]
