@@ -24,7 +24,7 @@ int main() {
         }
 
         // Write the flag to the file
-        fprintf(file, "Flag: HD{mage_ustasi_siri_yurishlar_bilan_muvaffaqiyatga_erishish}\n");
+        fprintf(file, "Flag: HD{M_va_P_harflarini_almashtirsangiz_qiziqroq_bo'ladi}\n");
         fclose(file);  // Close the file
         printf("Flag has been written to game-gide.txt\n");
     } else {

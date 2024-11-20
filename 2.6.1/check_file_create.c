@@ -10,7 +10,7 @@ int main() {
 
     // Check if the file exists
     if (file) {
-        printf("HD{its_all_greek_to_me}\n");
+        printf("HD{hammasi_menga_tushunarsiz}\n");
         fclose(file); // Close the file if it exists
     } else {
         printf("The file 'fast.txt' does not exist in the /home/hermes/ directory.\n");

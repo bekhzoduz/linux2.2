@@ -3,16 +3,17 @@
 #include <sys/stat.h>
 
 int main() {
-    // Define the directory path
+    // Katalog manzili
     const char *dir_path = "/home/hermes/FullOfStuff";
-    
-    // Check if the directory exists
+
+    // Katalog mavjudligini tekshirish
     struct stat statbuf;
     if (stat(dir_path, &statbuf) == 0 && S_ISDIR(statbuf.st_mode)) {
-        printf("HD{taking_out_the_trash_is_not_so_fun}\n");
+        printf("Xato: 'FullOfStuff' katalogi mavjud. Iltimos, uni o'chiring.\n");
+        return 1; // Xato kodi
     } else {
-        printf("The directory 'FullOfStuff' does not exist.\n");
+        printf("flag: HD{axlatni_olib_chiqish_juda_qiziq_emas}\n");
     }
-    
+
     return 0;
 }

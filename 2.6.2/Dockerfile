@@ -1,15 +1,28 @@
-# Use a basic image with bash support
 FROM ubuntu:20.04
 
-# Install necessary tools and compilers
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y \
-    bash \
-    sudo \
-    coreutils \
-    findutils \
-    file \
-    wget \
+    rsync \
+    curl \
+    libc6 \
+    vim \
+    git \
+    htop \
+    net-tools \
+    tar \
+    openssl \
+    man-db \
+    grep \
     build-essential \
+    software-properties-common \
+    wget \
+    unzip \
+    lsb-release \
+    ca-certificates \
+    gcc \
+    sudo \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the user 'athena' with password 'minerva' and add to sudo group
@@ -42,7 +55,7 @@ RUN mkdir -p /home/athena/MoreFiles && \
 
 # Task 3: Create the 'MassiveFiles' directory and fill it with 100 random files (random names and types)
 RUN mkdir -p /home/athena/MassiveFiles && \
-    bash -c 'words=("computer" "phone" "keyboard" "mouse" "monitor" "speaker" "tablet" "headphones" "camera" "printer" "scanner" "flashdrive") && \
+    bash -c 'words=("12221233" "43287658723" "00000001"  "computer" "phone" "keyboard" "mouse" "monitor" "speaker" "tablet" "headphones" "camera" "printer" "scanner" "flashdrive") && \
     types=("txt" "pdf" "png" "html" "docx" "xml") && \
     for i in $(seq 1 100); do \
         word="${words[$((RANDOM % ${#words[@]}))]}" && \

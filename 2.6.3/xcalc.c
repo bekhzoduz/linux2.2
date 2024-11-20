@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    const char *filename = "pmgg-notes.txt";
+    const char *filename = "/home/haad/javob.txt";
 
     // Faylni yaratish
     FILE *file = fopen(filename, "w");
@@ -16,8 +16,6 @@ int main() {
 
     // Faylni yopish
     fclose(file);
-
-    printf("File %s created successfully with the content.\n", filename);
 
     return 0;
 }

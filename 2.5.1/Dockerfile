@@ -46,6 +46,7 @@ COPY ./checkpath.c ./checkls.c ./
 RUN gcc checkpath.c -o checkpath && rm -f checkpath.c && \
     gcc checkls.c -o checkls && rm -f checkls.c
 RUN echo 'alias ls="echo \"ls buyrug‘i ishlamaydi!\""' >> /home/eris/.bashrc
+RUN echo '/var/www/slippers' >> /home/hermes/wings
 
 # Set permissions for user directories
 RUN chown -R atlas:atlas /home/atlas && chmod 700 /home/atlas && \

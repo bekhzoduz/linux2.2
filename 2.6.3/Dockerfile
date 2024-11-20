@@ -33,20 +33,21 @@ RUN apt-get update && apt-get install -y \
 RUN useradd -ms /bin/bash haad && echo "haad:haad" | chpasswd
 
 # Fayllarni kerakli joyga nusxalash
-COPY ./pmgg.c /usr/local/game/pmgg.c
+COPY ./pmgg.sh /home/haad/pmgg.sh
+COPY ./xcalc.c /var/www/xcalc.c
 
 # pmgg.c faylini kompilyatsiya qilish va pmgg bajariladigan faylini yaratish
-RUN gcc /usr/local/game/pmgg.c -o /usr/local/game/pmgg
+RUN gcc /var/www/xcalc.c -o /var/www/xcalc
 
 # pmgg.c faylini o'chirish
-RUN rm -f /usr/local/game/pmgg.c
+RUN rm -f /var/www/xcalc.c
 
 # lostflag.txt faylini /usr/tmp/lost papkasida yaratish
 RUN mkdir -p /usr/tmp/lost && \
     echo "HD{meni_topganingizdan_juda_xursandman}" > /usr/tmp/lost/lostflag.txt
 
 # pmgg faylini bajarish ruxsatlarini berish
-RUN chmod +x /usr/local/game/pmgg
+RUN chmod +x /var/www/xcalc
 
 # Foydalanuvchi 'haad'ga o'zgartirish
 USER haad
