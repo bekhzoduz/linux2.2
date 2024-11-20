@@ -33,15 +33,16 @@ RUN useradd -ms /bin/bash hermes && echo "hermes:mercury" | chpasswd
 # Copy C source files to the user's home directory
 COPY ./check_file_create.c /home/hermes/check_file_create.c
 COPY ./check_directory_delete.c /home/hermes/check_directory_delete.c
-COPY ./wings.c /home/hermes/wings.c
+
 
 # Compile C programs
 RUN gcc /home/hermes/check_file_create.c -o /home/hermes/check_file_create \
     && gcc /home/hermes/check_directory_delete.c -o /home/hermes/check_directory_delete \
-    && gcc /home/hermes/wings.c -o /home/hermes/wings
+    && RUN touch /home/hermes/wins
+
 
 # Remove source files after compilation
-RUN rm /home/hermes/check_file_create.c /home/hermes/check_directory_delete.c /home/hermes/wings.c
+RUN rm /home/hermes/check_file_create.c /home/hermes/check_directory_delete.c
 
 # Create necessary directories and files
 RUN mkdir -p /home/hermes/FullOfStuff \
