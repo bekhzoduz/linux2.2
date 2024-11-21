@@ -34,23 +34,20 @@ RUN useradd -ms /bin/bash hermes && echo "hermes:mercury" | chpasswd
 COPY ./check_file_create.c /home/hermes/check_file_create.c
 COPY ./check_directory_delete.c /home/hermes/check_directory_delete.c
 
-
 # Compile C programs
 RUN gcc /home/hermes/check_file_create.c -o /home/hermes/check_file_create \
-    && gcc /home/hermes/check_directory_delete.c -o /home/hermes/check_directory_delete 
-RUN touch /home/hermes/qanotlar
+    && gcc /home/hermes/check_directory_delete.c -o /home/hermes/check_directory_delete
 
 # Remove source files after compilation
 RUN rm /home/hermes/check_file_create.c /home/hermes/check_directory_delete.c
 
 # Create necessary directories and files
 RUN mkdir -p /home/hermes/FullOfStuff \
-    && mkdir -p /var/www/slippers
+    && mkdir -p /var/www/slippers \
+    && touch /home/hermes/qanotlar
 
-RUN ln /home/username/qanotlar /var/www/slippers
-
-# Simlink yaratish
-RUN ln -s /var/www/slippers /home/username/qanotlar_symlink
+# Create a symbolic link instead of a hard link (more flexible)
+RUN ln -s /home/hermes/qanotlar /var/www/slippers/qanotlar_symlink
 
 # Set permissions for the home directory and other important directories
 RUN chown -R hermes:hermes /home/hermes /var/www/slippers
@@ -60,4 +57,4 @@ USER hermes
 WORKDIR /home/hermes
 
 # Start an interactive bash shell
-ENTRYPOINT ["/bin/bash"]
+CMD ["/bin/bash"]
