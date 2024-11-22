@@ -46,6 +46,9 @@ COPY ./checkpath.c ./checkls.c ./
 RUN gcc checkpath.c -o checkpath && rm -f checkpath.c && \
     gcc checkls.c -o checkls && rm -f checkls.c
 RUN echo 'alias ls="echo \"ls buyrug‘i ishlamaydi!\""' >> /home/eris/.bashrc
+RUN echo 'export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/proc' >> /home/eris/.bashrc
+RUN echo 'alias showflag="echo '\''Flag: HD{Hech_narsa_etiboringdan_tashqarida_emas}'\''"' >> /home/eris/.bashrc
+
 
 # Set permissions for user directories
 RUN chown -R atlas:atlas /home/atlas && chmod 700 /home/atlas && \

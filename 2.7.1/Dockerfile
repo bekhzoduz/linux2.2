@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y \
 
 # Create user artemis
 RUN useradd -ms /bin/bash artemis && echo "artemis:diana" | chpasswd
-
+RUN chown -R artemis:artemis /home/artemis
 # Add the artemis user to the sudo group to grant sudo privileges
 RUN usermod -aG sudo artemis
 
