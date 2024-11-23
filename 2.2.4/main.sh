@@ -1,4 +1,4 @@
-  #!/bin/bash
+#!/bin/bash
 
 # 1. Create user 'atlas' with a password 'titan'
 useradd -m -s /bin/bash atlas
@@ -34,9 +34,13 @@ echo "Program 'accept' created."
 # 6. Create a directory with many files for the fourth challenge
 mkdir -p /home/atlas/capture
 for i in {1..50}; do
+  if [ $i -eq 24 ]; then
+    continue
+  fi
   echo "Not the flag" > /home/atlas/capture/flag$i.txt
 done
 echo "OS{You're_getting_the_hang_of_this_3f8a91de}" > /home/atlas/capture/flag_real.txt
+sleep 3
 echo "HD{bu_qiyin_emasmi_3f8a91de}" > /home/atlas/capture/flag24.txt
 chown -R atlas:atlas /home/atlas/capture
 echo "Capture directory with flags created."

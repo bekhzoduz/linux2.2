@@ -22,7 +22,7 @@ RUN gcc /home/atlas/panmages/panmages.c -o /home/atlas/panmages/panmages
 
 RUN rm -rf /home/atlas/panmages/panmages.c 
 
-COPY panmages.1.gz /usr/share/man/man1/
+COPY panmages.1 /usr/share/man/man1/
 
 RUN mandb
 
