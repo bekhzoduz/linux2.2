@@ -1,4 +1,4 @@
-  #!/bin/bash
+#!/bin/bash
 
 # 1. Create user 'atlas' with a password 'titan'
 useradd -m -s /bin/bash atlas
