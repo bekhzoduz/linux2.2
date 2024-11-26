@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 
     if (argc > 1 && strcmp(argv[1], "-flag") == 0) {
         // Bayroqni chop etamiz
-        printf("The flag is: HD{menga_yordam_ber _men_esa_senga} \n");
+        printf("The flag is: HD{menga_yordam_ber_men_esa_senga}\n");
     }
 
     return 0;

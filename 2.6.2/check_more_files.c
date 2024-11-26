@@ -4,25 +4,35 @@
 #include <stdlib.h>
 
 int main() {
-    const char *dir_path = "/home/athena/MoreFiles/Athena Documents";
+    const char *more_files_path = "/home/athena/MoreFiles";
+    const char *athena_docs_path = "/home/athena/MoreFiles/Athena Documents";
     struct dirent *entry;
-    DIR *dir = opendir(dir_path);
-    int txt_count = 0;
+    DIR *more_files_dir = opendir(more_files_path);
+    DIR *athena_docs_dir = opendir(athena_docs_path);
+    int more_files_txt_count = 0;
+    int athena_docs_txt_count = 0;
 
-    if (dir == NULL) {
+    if (more_files_dir == NULL || athena_docs_dir == NULL) {
         printf("Siz topshiriqni to'liq bajarmadingiz.\n");
         return 1;
     }
 
-    while ((entry = readdir(dir)) != NULL) {
+    while ((entry = readdir(more_files_dir)) != NULL) {
         if (strstr(entry->d_name, ".txt") != NULL) {
-            txt_count++;
+            more_files_txt_count++;
         }
     }
 
-    closedir(dir);
+    while ((entry = readdir(athena_docs_dir)) != NULL) {
+        if (strstr(entry->d_name, ".txt") != NULL) {
+            athena_docs_txt_count++;
+        }
+    }
 
-    if (txt_count > 0) {
+    closedir(more_files_dir);
+    closedir(athena_docs_dir);
+
+    if (more_files_txt_count == 0 && athena_docs_txt_count > 0) {
         printf("HD{wildcardlar_juda_qiziqarli!}\n");
     } else {
         printf("Siz topshiriqni to'liq bajarmadingiz.\n");

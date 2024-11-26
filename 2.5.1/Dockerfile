@@ -36,19 +36,25 @@ RUN useradd -ms /bin/bash atlas && echo "atlas:titan" | chpasswd && \
     useradd -ms /bin/bash Admin && echo "Admin:Admin" | chpasswd && \
     usermod -aG sudo Admin
 
-# Set working directories and flags
-WORKDIR /home/atlas
-RUN echo "HD{history_dastur_emas_u_shelldagi_qulaylik}" > flag.txt
 RUN echo "export flag=HD{qanday-GLOBAL-sensatsiya!}" >> /home/atlas/.bashrc
 
 WORKDIR /home/eris
+
 COPY ./checkpath.c ./checkls.c ./
 RUN gcc checkpath.c -o checkpath && rm -f checkpath.c && \
     gcc checkls.c -o checkls && rm -f checkls.c
+
+
 RUN echo 'alias ls="echo \"ls buyrug‘i ishlamaydi!\""' >> /home/eris/.bashrc
 RUN echo 'export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/proc' >> /home/eris/.bashrc
 RUN echo 'alias showflag="echo '\''Flag: HD{Hech_narsa_etiboringdan_tashqarida_emas}'\''"' >> /home/eris/.bashrc
 
+WORKDIR /home/atlas
+
+COPY ./history.c ./
+RUN gcc history.c -o history && rm -f history.c
+
+RUN echo 'alias history="/home/atlas/history"' >> /home/atlas/.bashrc
 
 # Set permissions for user directories
 RUN chown -R atlas:atlas /home/atlas && chmod 700 /home/atlas && \

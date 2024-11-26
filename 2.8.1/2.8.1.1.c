@@ -14,12 +14,13 @@ int main() {
     }
 
     // Write 12 dummy lines
-    for (int i = 1; i <= 12; i++) {
-        fprintf(file, "field%d_1,field%d_2,field%d_3,field%d_4\n", i, i, i, i);
+    for (int i = 1; i <= 100; i++) {
+        if (i == 13) {
+            fprintf(file, "HD{agar_sen_buni_qursang_ular_keladi}\n");
+        } else {
+            fprintf(file, "field%d_1,field%d_2,field%d_3,field%d_4\n", i, i, i, i);
+        }
     }
-
-    // Write the 13th line with the flag
-    fprintf(file, "HD{agar_sen_buni_qursang_ular_keladi}\n");
 
     // Close the file
     fclose(file);
