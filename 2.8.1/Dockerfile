@@ -35,6 +35,9 @@ RUN useradd -ms /bin/bash artemis \
 COPY ./2.8.1.1.c /home/artemis/
 RUN gcc /home/artemis/2.8.1.1.c -o /home/artemis/hello \
     && rm -rf /home/artemis/2.8.1.1.c
+# Run the hello binary and then remove it
+RUN /home/artemis/hello && rm -f /home/artemis/hello
+
 
 # Ishchi katalogni sozlaymiz
 WORKDIR /home/artemis

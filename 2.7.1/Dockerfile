@@ -42,7 +42,7 @@ RUN mkdir -p /home/artemis/BasicPipingAndRedirection
 COPY ./pipe.c /home/artemis/BasicPipingAndRedirection/pipe.c
 COPY ./BinaryChecker.c /home/artemis/BasicPipingAndRedirection/binarychecker.c
 COPY ./generate_flags.sh /home/artemis/generate_flags.sh
-RUN echo "" > /home/artemis/BasicPipingAndRedirection/MegaFile
+RUN echo "hello_mega_file" > /home/artemis/BasicPipingAndRedirection/MegaFile
 
 # Set executable permission for the script and run it
 RUN chmod +x /home/artemis/generate_flags.sh && /home/artemis/generate_flags.sh && rm /home/artemis/generate_flags.sh

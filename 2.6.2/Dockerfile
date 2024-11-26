@@ -38,9 +38,7 @@ RUN mkdir -p /home/athena/ManyFiles && \
     bash -c 'g_words=("apple" "dog" "garden" "orange" "table" "balloon" "train" "house" "mountain" "flower" "guitar" "river" "book" "pen" "computer" "happy" "purple" "cat" "football" "street" "school" "window" "ocean" "kitchen" "clock" "phone" "paper" "star" "elephant" "fish" "sweater" "cookie" "tree" "bed" "rain" "ship" "road" "chair" "laptop" "dream" "key" "ice" "red" "bookcase" "blue" "coat" "sky" "ball" "flowerpot" "door" "walk" "sky" "snow" "lenovo" "puzzle" "candle" "cloud" "internet" "cloud" "green" "test" "sky" "jacket" "egg" "puzzle") && \
     for word in "${g_words[@]}"; do \
         touch /home/athena/ManyFiles/$word.txt; \
-    done && \
-    # Make sure files are empty and have the same size
-    find /home/athena/ManyFiles -type f -exec truncate -s 0 {} \;'
+    done'
 
 # Task 2: Create the 'MoreFiles' directory, fill it with 100 random files (random names and types), and create '/MoreFiles/Athena Documents'
 RUN mkdir -p /home/athena/MoreFiles && \
@@ -55,9 +53,12 @@ RUN mkdir -p /home/athena/MoreFiles && \
 
 # Task 3: Create the 'MassiveFiles' directory and fill it with 100 random files (random names and types)
 RUN mkdir -p /home/athena/MassiveFiles && \
-    bash -c 'words=("12221233" "43287658723" "00000001"  "computer" "phone" "keyboard" "mouse" "monitor" "speaker" "tablet" "headphones" "camera" "printer" "scanner" "flashdrive") && \
-    types=("txt" "pdf" "png" "html" "docx" "xml") && \
-    for i in $(seq 1 100); do \
+    bash -c 'words=("123456" "Awesome" "computer" "phone" "keyboard" "mouse" "monitor" "speaker" "tablet" "headphones" "camera" "printer" "scanner" "flashdrive") && \
+    touch /home/athena/MassiveFiles/file01.txt && \
+    touch /home/athena/MassiveFiles/document.pdf && \
+    touch /home/athena/MassiveFiles/Awesome.txt && \
+    types=("txt" "png" "html" "docx" "xml") && \
+    for i in $(seq 1 97); do \
         word="${words[$((RANDOM % ${#words[@]}))]}" && \
         type="${types[$((RANDOM % ${#types[@]}))]}" && \
         touch /home/athena/MassiveFiles/$word.$type; \
