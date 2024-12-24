@@ -43,8 +43,8 @@ RUN gcc /home/hermes/check_file_create.c -o /home/hermes/check_file_create \
 RUN rm /home/hermes/check_file_create.c /home/hermes/check_directory_delete.c
 
 # Create necessary directories and files
-RUN mkdir -p /home/hermes/FullOfStuff \
-    && echo 'Haady' > /var/www/qanotlar
+RUN mkdir -p /home/hermes/FullOfStuff && \
+    echo 'Haady' > /var/www/qanotlar
 
 
 RUN ln -s /var/www/qanotlar /home/hermes/qanotlar_symlink 
