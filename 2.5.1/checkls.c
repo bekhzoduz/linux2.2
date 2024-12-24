@@ -54,7 +54,7 @@ int main() {
     // Natijani chiqarish
     if (found) {
         printf("ls buyrug‘i muvaffaqiyatli bajarildi. \"checkpath\" topildi.\n");
-        printf("HD{aliasni_ishlatish_meni_sirli_agentdek_his_qildiradi}\n");
+        printf("HD{aliasni_ishlatish_meni_sirli_agentdek_his_qilidiradi}\n");
     } else {
         printf("ls buyrug‘i ishlamaydi!\n");
     }

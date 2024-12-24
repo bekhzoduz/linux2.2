@@ -44,14 +44,13 @@ RUN rm /home/hermes/check_file_create.c /home/hermes/check_directory_delete.c
 
 # Create necessary directories and files
 RUN mkdir -p /home/hermes/FullOfStuff \
-    && mkdir -p /var/www/slippers \
-    && touch /var/www/slippers/qanotlar
+    && touch /var/www/qanotlar
 
 
-RUN ln -s /var/www/slippers/qanotlar /home/hermes/qanotlar_symlink 
+RUN ln -s /var/www/qanotlar /home/hermes/qanotlar_symlink 
 
 # Set permissions for the home directory and other important directories
-RUN chown -R hermes:hermes /home/hermes /var/www/slippers
+RUN chown -R hermes:hermes /home/hermes /var/www/
 
 # Switch to the 'hermes' user
 USER hermes
