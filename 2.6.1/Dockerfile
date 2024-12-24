@@ -44,6 +44,7 @@ RUN rm /home/hermes/check_file_create.c /home/hermes/check_directory_delete.c
 
 # Create necessary directories and files
 RUN mkdir -p /home/hermes/FullOfStuff && \
+    mkdir -p /var/www && \
     echo 'Haady' > /var/www/qanotlar
 
 
